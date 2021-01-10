@@ -8,7 +8,7 @@ var leftProductImg = document.getElementById('left_product_img');
 var rightProductImg = document.getElementById('right_product_img');
 var middleProductImg = document.getElementById('middle_product_img');
 var productSection = document.getElementById('all_products');
-var trialsleft = 5;
+var trialsleft = 25;
 
 var productOfList = document.getElementById('productList'); 
 var button = document.getElementById('button');
