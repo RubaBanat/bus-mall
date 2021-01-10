@@ -1,0 +1,84 @@
+*{
+  margin: 0;
+  padding: 0 0 5px 0;
+  box-sizing: border-box;
+
+  }
+  
+  body {
+    background-color:#f8f6f8;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9px;
+  
+  }
+  
+  header {
+    background: #3d6a4455;
+    width: 100%;
+    padding: 2px;
+  }
+  
+  nav {
+    max-width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  nav ul {
+    margin: auto;
+    display: block;
+    max-width: 660px;
+    text-align: center;
+  }
+
+  h1 {
+      font-family: cursive;
+      text-align: center;
+      margin-top: 10%;
+      margin-bottom: 5%;
+      text-shadow: 2px 2px grey;
+
+  }
+  main{
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  img {
+    max-height: 160px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-left: 15%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+  
+  li {
+    display: inline-block;
+    list-style: none;
+    margin: 20px 40px 20px 0px;
+    font-size: 1.2em;
+    
+  }
+  
+  #button {
+   width: 40%;
+   margin-top: 3%;
+   margin-left: 27%;
+   border-radius: 15%;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   margin-bottom: 4%;
+  }
+  
+  footer div {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  section div {
+    padding: 10px;
+    box-sizing: border-box;
+    float: left;
+    width: 30%;
+  }
