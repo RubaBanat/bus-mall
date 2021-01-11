@@ -10,9 +10,11 @@ var middleProductImg = document.getElementById('middle_product_img');
 var productSection = document.getElementById('all_products');
 var trialsleft = 25;
 
-var productOfList = document.getElementById('productList'); 
+var shownImages = [];
+var productOfList = document.getElementById('productList');
+var productCanvas = document.getElementById('productChart').getContext('2d');
 var button = document.getElementById('button');
-button.style.display= 'none';
+button.style.display = 'none';
 //=======================================
 
 function Product(name, image) {
@@ -34,16 +36,172 @@ function renderProduct(leftImage, middleImage, rightImage) {
     arrayOfProducts[middleImage].timeShown++;
 }
 
+
+function renderChart() {
+
+    var arrayOfProductNames = [];
+    var arrayOfProductCount = [];
+    var arrayOfProductsShown = [];
+
+
+    for (var i = 0; i < arrayOfProducts.length; i++) {
+        arrayOfProductNames.push(arrayOfProducts[i].name);
+        arrayOfProductCount.push(arrayOfProducts[i].counter);
+        arrayOfProductsShown.push(arrayOfProducts[i].timeShown);
+
+    }
+
+    var myChart = new Chart(productCanvas, {
+        type: 'bar',
+        data: {
+            labels: arrayOfProductNames,
+            datasets: [
+                {
+                    label: '# of Product Clicks',
+                    data: arrayOfProductCount,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                        
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Product Times Shown',
+                    data: arrayOfProductsShown,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function checkAva (selectedProductName) {
+
+    for (var index = 0; index < shownImages.length; index++) {
+        if (shownImages[index].name === selectedProductName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function pickAProduct() {
-    var leftImage = Math.round(Math.random() * (arrayOfProducts.length - 1))
+    do {
+        var leftImage = Math.round(Math.random() * (arrayOfProducts.length - 1))
+        var leftProductImgName = arrayOfProducts[leftImage].name;
+
+    } while (checkAva(leftProductImgName));
 
     do {
         var middleImage = Math.round(Math.random() * (arrayOfProducts.length - 1))
-        } while (middleImage === leftImage);
-        do {
-            var rightImage = Math.round(Math.random() * (arrayOfProducts.length - 1))
-    } while (rightImage === middleImage || rightImage === leftImage);
+        var middleProductImgName = arrayOfProducts[middleImage].name;
+    } while (middleImage === leftImage || checkAva(middleProductImgName));
+    do {
+        var rightImage = Math.round(Math.random() * (arrayOfProducts.length - 1))
+        var rightProductImgName = arrayOfProducts[rightImage].name;
+    } while (rightImage === middleImage || rightImage === leftImage || checkAva(rightProductImgName));
 
+    shownImages = [];
+
+  shownImages.push(
+    arrayOfProducts[leftImage],
+    arrayOfProducts[rightImage],
+    arrayOfProducts[middleImage]
+  )
 
     renderProduct(leftImage, rightImage, middleImage);
 
@@ -59,7 +217,7 @@ function checkProduct(objectIndicator) {
 }
 
 function countProduct(event) {
-    
+
     var targetId = event.target.id;
     if (trialsleft !== 0) {
         if (targetId === 'left_product_img' || targetId === 'right_product_img' || targetId === 'middle_product_img') {
@@ -72,7 +230,7 @@ function countProduct(event) {
         productSection.removeEventListener('click', countProduct);
         console.log(arrayOfProducts);
         button.style.display = 'block';
-      
+        
     }
 }
 
@@ -104,14 +262,16 @@ pickAProduct();
 productSection.addEventListener('click', countProduct);
 
 
-function list(event){
+function list(event) {
     event.preventDefault();
-    var ul = document.createElement("ul");
-    productOfList.appendChild(ul);
-    for (var j =0; j<arrayOfProducts.length; j++){
-      var li = document.createElement("li");
-      li.textContent = arrayOfProducts[j].name + " had "+arrayOfProducts[j].counter +" votes, and was seen "+ arrayOfProducts[j].timeShown +" times.";
-      ul.appendChild(li);
-    } 
-  }
-button.addEventListener('click', list);
+    renderChart();
+    // var ul = document.createElement("ul");
+    // productOfList.appendChild(ul);
+    // for (var j = 0; j < arrayOfProducts.length; j++) {
+    //     var li = document.createElement("li");
+    //     li.textContent = arrayOfProducts[j].name + " had " + arrayOfProducts[j].counter + " votes, and was seen " + arrayOfProducts[j].timeShown + " times.";
+    //     ul.appendChild(li);
+    // }
+}
+button.addEventListener('click', list );
+
