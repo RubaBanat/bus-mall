@@ -14,7 +14,10 @@ var shownImages = [];
 var productOfList = document.getElementById('productList');
 var productCanvas = document.getElementById('productChart').getContext('2d');
 var button = document.getElementById('button');
+var clearDataBtn = document.getElementById('clearLocalStorage')
 button.style.display = 'none';
+clearDataBtn.style.display = 'none';
+
 //=======================================
 
 function Product(name, image) {
@@ -25,6 +28,31 @@ function Product(name, image) {
     this.timeShown = 0;
 
     arrayOfProducts.push(this);
+
+
+}
+
+function storeData() {
+
+    localStorage.setItem('product', JSON.stringify(arrayOfProducts));
+
+}
+function clearLocalStorage() {
+
+    localStorage.clear();
+
+    arrayOfProducts = [];
+
+
+}
+
+
+function checkAndRestore() {
+
+    if (localStorage.length > 0) {
+        arrayOfProducts = JSON.parse(localStorage.getItem('product'));
+
+    }
 }
 
 function renderProduct(leftImage, middleImage, rightImage) {
@@ -80,7 +108,7 @@ function renderChart() {
                         'rgba(255, 159, 64, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
-                        
+
 
                     ],
                     borderColor: [
@@ -169,7 +197,7 @@ function renderChart() {
     });
 }
 
-function checkAva (selectedProductName) {
+function checkAva(selectedProductName) {
 
     for (var index = 0; index < shownImages.length; index++) {
         if (shownImages[index].name === selectedProductName) {
@@ -197,11 +225,11 @@ function pickAProduct() {
 
     shownImages = [];
 
-  shownImages.push(
-    arrayOfProducts[leftImage],
-    arrayOfProducts[rightImage],
-    arrayOfProducts[middleImage]
-  )
+    shownImages.push(
+        arrayOfProducts[leftImage],
+        arrayOfProducts[rightImage],
+        arrayOfProducts[middleImage]
+    )
 
     renderProduct(leftImage, rightImage, middleImage);
 
@@ -215,6 +243,7 @@ function checkProduct(objectIndicator) {
         }
     }
 }
+
 
 function countProduct(event) {
 
@@ -230,7 +259,9 @@ function countProduct(event) {
         productSection.removeEventListener('click', countProduct);
         console.log(arrayOfProducts);
         button.style.display = 'block';
-        
+        clearDataBtn.style.display = 'block';
+
+
     }
 }
 
@@ -259,12 +290,17 @@ new Product('Wine Glass', 'wine-glass.jpg');
 
 
 pickAProduct();
+checkAndRestore();
 productSection.addEventListener('click', countProduct);
+clearDataBtn.addEventListener('click', clearLocalStorage);
 
 
 function list(event) {
     event.preventDefault();
     renderChart();
+    storeData();
+
+
     // var ul = document.createElement("ul");
     // productOfList.appendChild(ul);
     // for (var j = 0; j < arrayOfProducts.length; j++) {
@@ -273,5 +309,4 @@ function list(event) {
     //     ul.appendChild(li);
     // }
 }
-button.addEventListener('click', list );
-
+button.addEventListener('click', list);
