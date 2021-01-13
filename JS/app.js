@@ -19,7 +19,7 @@ button.style.display = 'none';
 clearDataBtn.style.display = 'none';
 //=======================================
 
-function Product(name, image) {
+function Product(name, image) { // the main constructer
     this.image = image;
     this.name = name;
     this.url = 'images/' + image;
@@ -29,7 +29,7 @@ function Product(name, image) {
     arrayOfProducts.push(this);
 }
 
-function storeData() {
+function storeData() { // to store data 
 
     localStorage.setItem('product', JSON.stringify(arrayOfProducts));
 
@@ -44,7 +44,7 @@ function renderProduct(leftImage, middleImage, rightImage) {
     arrayOfProducts[middleImage].timeShown++;
 }
 
-function clearLocalStorage() {
+function clearLocalStorage() { // to clear storage 
 
     localStorage.clear();
 
@@ -52,10 +52,10 @@ function clearLocalStorage() {
 
 }
 
-function checkAndRestore() {
+function checkAndRestore() { 
 
-    if (localStorage.length > 0) {
-        arrayOfProducts = JSON.parse(localStorage.getItem('product'));
+    if (localStorage.length > 0) {  // check if the local storage has any values in it
+        arrayOfProducts = JSON.parse(localStorage.getItem('product')); // restore the data from the local storage
 
     }
 }
@@ -103,7 +103,7 @@ function renderChart() {
                         'rgba(255, 159, 64, 0.2)',
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
-                        
+
 
                     ],
                     borderColor: [
@@ -192,7 +192,7 @@ function renderChart() {
     });
 }
 
-function checkAva (selectedProductName) {
+function checkAva(selectedProductName) { 
 
     for (var index = 0; index < shownImages.length; index++) {
         if (shownImages[index].name === selectedProductName) {
@@ -220,11 +220,11 @@ function pickAProduct() {
 
     shownImages = [];
 
-  shownImages.push(
-    arrayOfProducts[leftImage],
-    arrayOfProducts[rightImage],
-    arrayOfProducts[middleImage]
-  )
+    shownImages.push(
+        arrayOfProducts[leftImage],
+        arrayOfProducts[rightImage],
+        arrayOfProducts[middleImage]
+    )
 
     renderProduct(leftImage, rightImage, middleImage);
 
@@ -254,7 +254,7 @@ function countProduct(event) {
         console.log(arrayOfProducts);
         button.style.display = 'block';
         clearDataBtn.style.display = 'block';
-        
+
     }
 }
 
@@ -287,7 +287,7 @@ productSection.addEventListener('click', countProduct);
 clearDataBtn.addEventListener('click', clearLocalStorage);
 
 
-function list(event) {
+function list(event) { 
     event.preventDefault();
     renderChart();
     storeData();
@@ -299,5 +299,5 @@ function list(event) {
     //     ul.appendChild(li);
     // }
 }
-button.addEventListener('click', list );
+button.addEventListener('click', list);
 checkAndRestore();
